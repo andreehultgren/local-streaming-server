@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="/static/img/logo.png">
+    <title>{% block title %}Undefined{% endblock %} - MyFlix</title>
+    {% endblock %}
+  </head>
+  <body>
+    <nav>
+      {% include "navigation.html" %}
+    </nav>
+    <div id="messages"></div>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      <hr></hr>
+      Built by <a href="https://andreehultgren.github.io/">Andree Hultgren</a>
+    </div>
+
+    <script src="/static/js/socket.js"></script>
+    <script>
+
+    const socket = io();
+
+    </script>
+    <script>
+      function setMessage (status, message){
+          // Set up structure of notification
+          let notificationWrapper = document.createElement("div")
+          let notificationText = document.createTextNode(message)
+          notificationWrapper.appendChild(notificationText)
+
+          // Find a somewhere to place the message
+          let root = document.getElementById("messages")
+          
+          // Check that we have a root
+          if(!!!root){
+            console.error("Notification root not found")
+            return
+          }
+
+          function deleteNotification(){
+            root.removeChild(notificationWrapper);
+          }
+
+          // Set a fitting class for the child
+          notificationWrapper.classList.add(status)
+          notificationWrapper.onclick=deleteNotification
+
+          // Add the notification to the dom
+          root.appendChild(notificationWrapper)
+          setTimeout(deleteNotification,5000);
+
+        }
+      const notifications = {
+        error: (message)=>setMessage("error", message),
+        info: (message)=>setMessage("info", message),
+        success: (message)=>setMessage("success", message)
+      }
+    </script>
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>

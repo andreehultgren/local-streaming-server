@@ -1,0 +1,82 @@
+
+html, body, nav, ul{
+    padding:0px;
+    margin:0px;
+}
+html, body{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+}
+
+body{
+    min-height: -webkit-fill-available;
+}
+
+nav{
+    width:100%;
+    background: #404040; 
+    padding: 8px;
+}
+
+nav ul {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav ul li a {
+    color:white;
+    margin-left: 16px;
+    margin-right: 4px;
+    text-decoration: none;
+}
+
+#content{
+    flex:1;
+}
+#content, #footer{
+    padding: 4px 32px;
+}
+
+
+input[type="radio"]{
+    margin:0px;
+    padding:0px;
+    margin-right:5px;
+}
+
+input[type="text"]{
+    padding:4px;
+    border-radius: 4px;
+}
+
+form .row{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+form .section{
+    margin-top:16px;
+}
+
+#messages .error, #messages .success, #messages .info{
+    padding:16px 16px;
+    margin: 8px 32px;
+    border-radius: 8px;
+    color:white;
+}
+
+#messages .error{
+    background-color: rgb(223, 0, 0);
+}
+#messages .success{
+    background-color: rgb(23, 182, 2);
+}
+#messages .info{
+    background-color: rgb(0, 44, 238);
+}

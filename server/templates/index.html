@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+  <p>Use the buttons below to add more movies to your streaming library.</p>
+  <p id="status">
+    {% if job_running %}
+      Job is running
+    {% elif looking_for_disc %}
+      Looking for a disc
+    {% elif disc_loaded %}
+      Disc loaded!
+    {% else %}
+      Nothing is happening
+    {% endif %}
+  </p>
+  <button id="look_for_discs" {% if job_running or looking_for_disc %}disabled{%endif%}>Look for disc</button>
+  <button id="eject_disc" {% if not disc_loaded %}disabled{% endif %}>Eject disc</button>
+  <button id="stop_job" {% if not job_running %}disabled{% endif %}>Stop job</button>
+  <hr></hr>
+  <form id="form">
+    <div class="section">
+      <label for="disc_name">Name of disc</label><br>
+      <input type="text" id="disc_name" name="disc_name" placeholder="Name of the disc">
+    </div>
+    <div class="section">
+      <label for="imdb_tag">IMDB tag</label><br>
+      <input type="text" id="imdb_tag" name="imdb_tag" placeholder="Tag of IMDB movie">
+    </div>
+    <button id="start_job" type="submit">Start job</button>
+  </div>
+  </form>
+
+  
+  
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/api.js"></script>
+{% endblock %}
